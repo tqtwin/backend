@@ -3,7 +3,7 @@ const redisClient = require('../dbs/redis');
 
 class UserService {
      getListUsersWithCache = async (params = {}) => {
-        const users = await redisClient.get('users');
+        const users = await redisClient.get('us');
         if (users) {
             return JSON.parse(users);
         }
@@ -12,7 +12,7 @@ class UserService {
     }
 
     setUsersCache = async (users) => {
-        return redisClient.set('users', JSON.stringify(users));
+        return redisClient.set('us', JSON.stringify(users));
     }
     async createUser(data) {
         try {
