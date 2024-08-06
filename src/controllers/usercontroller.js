@@ -35,12 +35,12 @@ class UserController {
     }
     async getListUser(req, res) {
         try {
-            // const users = await userService.getListUsersWithCache();
-            // if (users) {
-            //     return res.json(users);
-            // }
+            const users = await userService.getListUsersWithCache();
+            if (users) {
+                return res.json(users);
+            }
              const usersdata = await userService.getUsers();
-             // await userService.setUsersCache(usersdata);
+             await userService.setUsersCache(usersdata);
             return res.status(200).json({ success: true, data: usersdata });
         } catch (error) {
             return res.status(500).json({ message: 'Error fetching products', success: false, error: error.message });
